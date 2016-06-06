@@ -25,18 +25,18 @@ type svdep struct {
 	SpecValue *specvalue.SpecValue
 }
 
-type SpecValueTest struct {
+type SpecValueExample struct {
 	Dependences svdep
 }
 
-func (s SpecValueTest) Test(ctx *cyako.Ctx) {
+func (s SpecValueExample) Example(ctx *cyako.Ctx) {
 	// specvalue := s.Dependences.SpecValue
 	// specvalue.SetInt("1")
 	// r := specvalue.GetInt("1")
 }
 
 func init() {
-	var m = SpecValueTest{
+	var m = SpecValueExample{
 		Dependences: svdep{
 			SpecValue: cyako.Svc["SpecValue"].(*specvalue.SpecValue),
 		},

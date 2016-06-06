@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" src="../node_modules/cyako.js/dist/cyako.js"></script>
+<script type="text/javascript">
+	let c = new Cyako("ws://localhost:3000")
+	c.fetch("RealtimeExample.Example").then(data=>{
+		console.log(data)
+	})
+</script>
+</body>
+</html>

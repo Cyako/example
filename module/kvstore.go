@@ -11,19 +11,19 @@ type kvsdep struct {
 	KVStore *kvstore.KVStore
 }
 
-type KVStoreTest struct {
+type KVStoreExample struct {
 	Dependences kvsdep
 }
 
-func (k KVStoreTest) Test(ctx *cyako.Ctx) {
+func (k KVStoreExample) Example(ctx *cyako.Ctx) {
 	kvstore := k.Dependences.KVStore
-	kvstore.SetWithScoped("KVStoreTest", "test", 123)
-	v := kvstore.GetWithScoped("KVStoreTest", "test")
+	kvstore.SetWithScoped("KVStoreExample", "test", 123)
+	v := kvstore.GetWithScoped("KVStoreExample", "test")
 	fmt.Println(v)
 }
 
 func init() {
-	var m = KVStoreTest{
+	var m = KVStoreExample{
 		Dependences: kvsdep{
 			KVStore: cyako.Svc["KVStore"].(*kvstore.KVStore),
 		},

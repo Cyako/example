@@ -1,20 +1,34 @@
 package module
 
 import (
-// cyako "github.com/Cyako/Cyako.go"
-// "github.com/Cyako/Cyako.go/realtime"
+	cyako "github.com/Cyako/Cyako.go"
+	"github.com/Cyako/Cyako.go/realtime"
 )
 
-// type RealtimeExample struct {
-// 	realtime *realtime.Realtime
-// }
+type rtdev struct {
+	Realtime *realtime.Realtime
+}
 
-// func (r *RealtimeExample) Get() {
+type RealtimeExample struct {
+	Dependences rtdev
+}
 
-// }
+func (r RealtimeExample) JoinChatRoom(ctx *cyako.Ctx) {
+	realtime := r.Dependences.Realtime
+	realtime.AddListener("chatroom", ctx.Conn)
+}
+
+func (r RealtimeExample) SendChatMessage(ctx *cyako.Ctx) {
+	realtime := r.Dependences.Realtime
+	res := &cyako.Res{}
+	realtime.Send("chatroom", res)
+}
 
 func init() {
-	// cyako.LoadModule(&RealtimeExample{
-	// 	realtime: &cyako.Ins().Middleware["Realtime"].(realtime.Realtime),
-	// })
+	var m = RealtimeExample{
+		Dependences: rtdev{
+			Realtime: cyako.Svc["Realtime"].(*realtime.Realtime),
+		},
+	}
+	cyako.LoadModule(m)
 }

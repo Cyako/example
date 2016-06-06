@@ -4,15 +4,17 @@ import (
 	// framework
 	cyako "github.com/Cyako/Cyako.go"
 
-	// middlewares
-	_ "github.com/Cyako/Cyako.go/kvstore"
+	// services
+	// _ "github.com/Cyako/Cyako.go/kvstore"
+	// _ "github.com/Cyako/Cyako.go/realtime"
+	// _ "github.com/Cyako/Cyako.go/specvalue"ss
 	// _ "github.com/Cyako/Cyako.go/jsonbase"
 	// _ "github.com/Cyako/Cyako.go/statistics"
 
-	// processor codules
+	// processor modules
 	_ "github.com/Cyako/example/module"
 
-	// systec library
+	// system library
 	"fmt"
 	// "golang.org/x/net/websocket"
 	// "net/http"
@@ -30,7 +32,7 @@ func main() {
 	fmt.Println(" Running...")
 	fmt.Println()
 
-	err := c.Run(":12345", "/")
+	err := c.Run(":3000", "/")
 	if err != nil {
 		panic("ListenAndServe: " + err.Error())
 	}
