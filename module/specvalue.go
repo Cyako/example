@@ -21,15 +21,15 @@ import (
 	// "fmt"
 )
 
-type dep struct {
+type svdep struct {
 	SpecValue *specvalue.SpecValue
 }
 
 type SpecValueTest struct {
-	Dependences dep
+	Dependences svdep
 }
 
-func (s SpecValueTest) Test() {
+func (s SpecValueTest) Test(ctx *cyako.Ctx) {
 	// specvalue := s.Dependences.SpecValue
 	// specvalue.SetInt("1")
 	// r := specvalue.GetInt("1")
@@ -37,8 +37,8 @@ func (s SpecValueTest) Test() {
 
 func init() {
 	var m = SpecValueTest{
-		Dependences: dep{
-			SpecValue: cyako.Ins().Middleware.Map["SpecValue"].(*specvalue.SpecValue),
+		Dependences: svdep{
+			SpecValue: cyako.Svc["SpecValue"].(*specvalue.SpecValue),
 		},
 	}
 	cyako.LoadModule(m)

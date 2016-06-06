@@ -1,5 +1,5 @@
 {
-	"Middleware":[
+	"Service":[
 		{
 			"name":"JSONBase",
 			"key":"path",

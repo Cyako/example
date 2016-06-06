@@ -11,7 +11,6 @@ import (
 
 	// processor codules
 	_ "github.com/Cyako/example/module"
-	_ "github.com/Cyako/example/temptest"
 
 	// systec library
 	"fmt"
@@ -23,6 +22,9 @@ func main() {
 
 	c := cyako.Ins()
 	c.PrintLoadInfo()
+	// c.PrintAPIDoc()
+	c.CheckModule()
+	fmt.Println()
 
 	// SERVER
 	fmt.Println(" Running...")
