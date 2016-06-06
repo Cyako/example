@@ -1,14 +1,13 @@
 package main
 
 import (
-
 	// framework
 	cyako "github.com/Cyako/Cyako.go"
 
 	// middlewares
-	_ "github.com/Cyako/Cyako.go/cache"
-	_ "github.com/Cyako/Cyako.go/jsonbase"
-	_ "github.com/Cyako/Cyako.go/statistics"
+	_ "github.com/Cyako/Cyako.go/kvstore"
+	// _ "github.com/Cyako/Cyako.go/jsonbase"
+	// _ "github.com/Cyako/Cyako.go/statistics"
 
 	// processor codules
 	_ "github.com/Cyako/example/module"

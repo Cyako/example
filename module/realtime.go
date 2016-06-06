@@ -1,17 +1,17 @@
 package module
 
 import (
-	cyako "github.com/Cyako/Cyako.go"
-	"github.com/Cyako/Cyako.go/realtime"
+// cyako "github.com/Cyako/Cyako.go"
+// "github.com/Cyako/Cyako.go/realtime"
 )
 
-type RealtimeExample struct {
-	realtime *realtime.Realtime
-}
+// type RealtimeExample struct {
+// 	realtime *realtime.Realtime
+// }
 
-func (r *RealtimeExample) Get() {
+// func (r *RealtimeExample) Get() {
 
-}
+// }
 
 func init() {
 	// cyako.LoadModule(&RealtimeExample{
