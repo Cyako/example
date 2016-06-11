@@ -20,7 +20,7 @@ func (r RealtimeExample) JoinChatRoom(ctx *cyako.Ctx) {
 
 func (r RealtimeExample) SendChatMessage(ctx *cyako.Ctx) {
 	realtime := r.Dependences.Realtime
-	res := &cyako.Res{}
+	res := &cyako.Res{Id: ctx.Id}
 	realtime.Send("chatroom", res)
 }
 
