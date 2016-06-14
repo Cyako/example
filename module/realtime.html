@@ -4,12 +4,38 @@
 	<title></title>
 </head>
 <body>
-<script type="text/javascript" src="../node_modules/cyako.js/dist/cyako.js"></script>
+<script type="text/javascript" src="../node_modules/cyako.js/dist/bundle.js"></script>
+<!--  -->
 <script type="text/javascript">
-	let c = new Cyako("ws://localhost:3000")
-	c.fetch("RealtimeExample.Example").then(data=>{
-		console.log(data)
-	})
+	var c = new Cyako("ws://localhost:3000");
+	var l = c.listen("RealtimeExample.JoinChatRoom",{},{});
+	l.promise.then(data=>{
+		console.log("Received:",data);
+	});
+	l.stream.then(data=>{
+		console.log("Received:",data);
+		alert(1);
+		let message = document.getElementById('message').value;
+		let m = document.createElement("div");
+		let content = document.createTextNode(JSON.stringify(data));
+		m.appendChild(content);
+	},err=>{})
 </script>
+<!--  -->
+<script type="text/javascript">
+	function send(){
+		c.fetch("RealtimeExample.SendChatMessage",{message:message},{}).then(data=>{},err=>{});
+	}
+</script>
+<!--  -->
+<div>
+	<div id="meesages">
+	</div>
+	<div>
+		<input type="text" id="message">
+		<button onclick="send()">Send</button>
+	</div>	
+</div>
+<!--  -->
 </body>
 </html>

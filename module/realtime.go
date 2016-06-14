@@ -3,6 +3,8 @@ package module
 import (
 	cyako "github.com/Cyako/Cyako.go"
 	"github.com/Cyako/Cyako.go/realtime"
+
+	"fmt"
 )
 
 type rtdev struct {
@@ -15,12 +17,20 @@ type RealtimeExample struct {
 
 func (r RealtimeExample) JoinChatRoom(ctx *cyako.Ctx) {
 	realtime := r.Dependences.Realtime
-	realtime.AddListener("chatroom", ctx.Conn)
+	// realtime.AddListener("chatroom", ctx.Conn, ctx.Id, ctx.Method)
+	realtime.AddListenerDefault("chatroom", ctx)
 }
 
 func (r RealtimeExample) SendChatMessage(ctx *cyako.Ctx) {
 	realtime := r.Dependences.Realtime
-	res := &cyako.Res{Id: ctx.Id}
+	ctx.Set(&cyako.ParamConfig{Key: "message", Required: true})
+	fmt.Println(ctx.Params)
+	res := &cyako.Res{}
+	res.Init()
+	// message := ctx.Params["message"].(string)
+	// fmt.Println(message)
+	res.Params["message"] = ctx.Params["message"]
+	// fmt.Println(res.Params)
 	realtime.Send("chatroom", res)
 }
 
