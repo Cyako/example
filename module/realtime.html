@@ -10,7 +10,7 @@
 	var c = new Cyako("ws://localhost:3000");
 	var l = c.listen("RealtimeExample.JoinChatRoom",{},{});
 	l.promise.then(data=>{
-		console.log("Received:",data);
+		console.log("Replied:",data);
 	});
 	l.stream.then(data=>{
 		console.log("Received:",data);
