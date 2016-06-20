@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Cyako/example#readme",
   "dependencies": {
-    "cyako.js": "0.0.3"
+    "cyako.js": "0.0.4"
   }
 }
