@@ -4,33 +4,55 @@
 	<title></title>
 </head>
 <body>
-<script type="text/javascript" src="../dist/bundle.js"></script>
-<!--  -->
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../../Cyako.js/dist/bundle.js"></script>
+<!-- cyako's litener on chatroom messages stream -->
 <script type="text/javascript">
 	var c = new Cyako("ws://localhost:3000");
 	var l = c.listen("RealtimeExample.JoinChatRoom",{},{});
-	l.then(data=>{
+	l.then(ack=>{
+		console.log("Welcome!");
+		$('#messages').append('<div class="notification">Welcome to the chatroom!</div>');
+	},data=>{
 		console.log('Replied:',data.params.message);
-		let messages = document.getElementById('messages');
-		let m = document.createElement('div');
-		m.classList.add('received-message');
-		let content = document.createElement('div');
-		content.classList.add('content')
-		let text = document.createTextNode(data.params.message);
-		content.appendChild(text);
-		m.appendChild(content);
-		messages.appendChild(m);
-		m.scrollIntoView();
+		let $messages = $('#messages');
+		// let meta_time = toTwoDigitsNumber(date.getHours())+':'+toTwoDigitsNumber(date.getMinutes());
+		let message = data.params.message;
+		$messages.append(`
+			<div class="received-message">
+				<div class="meta">${message.nickname} ${message.time}</div>
+				<div class="content">${message.content}</div>
+			</div>
+		`);
+		$messages.children().last()[0].scrollIntoView();
 	});
 </script>
-<!--  -->
+<!-- ui operation functions -->
 <script type="text/javascript">
-	// document.getElementById('message').focus;
 	function send(){
-		let message = document.getElementById('message').value;
-		c.fetch("RealtimeExample.SendChatMessage",{message:message},{}).then(data=>{
-			document.getElementById('message').value='';
-		},err=>{});
+		let message = $('#message').val();
+		let nickname = location.search.substr(1).split('&').map(kv=>{
+			kvarr = kv.split('=');
+			return {
+				key:kvarr[0],
+				value:kvarr[1]
+			}
+		}).filter(kv=>{
+			return kv.key==='username';
+		})[0].value;
+		if (message!=='') {
+			let date = new Date();
+			let toTwoDigitsNumber = (number) => +number<10?'0'+number:number;
+			c.fetch("RealtimeExample.SendChatMessage",{
+				message:{
+					nickname:nickname,
+					time:toTwoDigitsNumber(date.getHours())+':'+toTwoDigitsNumber(date.getMinutes()),
+					content:message
+				}
+			},{}).then(data=>{
+				$('#message').val('');
+			},err=>{});
+		}
 	}
 	function doEnterSend(event){
 		if (event.code==='Enter') {
@@ -38,7 +60,16 @@
 		}
 	}
 </script>
-<!--  -->
+<!-- ui -->
+<div class="container">
+	<div id="messages">
+	</div>
+	<div id="sendbox">
+		<input type="text" id="message" placeholder=" Type..." autofocus onkeypress="doEnterSend(event)">
+		<button onclick="send()">Send</button>
+	</div>	
+</div>
+<!-- add little styles for presentation -->
 <style>
 	*{
 		box-sizing: border-box;
@@ -57,6 +88,7 @@
 		left: 0;
 		right: 0;
 		bottom: 46px;
+		padding-bottom: 8px;
 	}
 	#messages .notification{
 		text-align: center;
@@ -67,17 +99,23 @@
 	#messages .received-message{
 		width: 100%;
 	}
+	#messages .received-message .meta{
+		margin: 6px 12px 0 12px;
+		padding: 0 0px;
+		font-size: 13px;
+		color: #999;
+	}
 	#messages .received-message .content{
 		font-size: 15px;
 		border-radius: 6px;
 		padding: 12px 18px;
-		margin: 8px 12px;
+		margin: 2px 12px 6px 12px;
 		word-wrap: break-word;
 		line-height: 1.8;
 		background-color: #eee;
 		display:inline-block;
-		max-width: 60%;
-		white-space: pre-line;
+		max-width: 75%;
+		white-space: pre-wrap;
 	}
 	#sendbox{
 		position: absolute;
@@ -86,6 +124,7 @@
 		right: 0;
 		background-color: #eee;
 		padding: 4px 12px;
+		border-top: 1px solid #ccc;
 		display: flex;
 	}
 	#sendbox #message,#sendbox button{
@@ -94,24 +133,16 @@
 	#sendbox #message{
 		width: 100%;
 		outline: none;
-		font-size: 18px;
+		border: none;
+		background: transparent;
+		font-size: 15px;
 	}
 	#sendbox button{
-		margin-left: 8px;
+		margin-left: 12px;
 		padding-left: 12px;
 		padding-right: 12px;
 		height: 38px;
 	}
 </style>
-<div class="container">
-	<div id="messages">
-		<div class="notification">Welcome to the chatroom!</div>
-	</div>
-	<div id="sendbox">
-		<input type="text" id="message" autofocus onkeypress="doEnterSend(event)">
-		<button onclick="send()">Send</button>
-	</div>	
-</div>
-<!--  -->
 </body>
 </html>
