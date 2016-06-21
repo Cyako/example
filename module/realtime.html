@@ -31,15 +31,11 @@
 <script type="text/javascript">
 	function send(){
 		let message = $('#message').val();
-		let nickname = location.search.substr(1).split('&').map(kv=>{
-			kvarr = kv.split('=');
-			return {
-				key:kvarr[0],
-				value:kvarr[1]
-			}
-		}).filter(kv=>{
-			return kv.key==='username';
-		})[0].value;
+		let nickname = location.search.substr(1).split('&')
+		.map(kv=>({key:kv.split('=')[0],value:kv.split('=')[1]}))
+		.filter(kv => kv.key==='username')
+		.map(kv => kv.value)
+		.join('');
 		if (message!=='') {
 			let date = new Date();
 			let toTwoDigitsNumber = (number) => +number<10?'0'+number:number;
