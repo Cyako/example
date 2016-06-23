@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	function enter(){
+		let username = $('#name').val();
+		if (username!=='') {
+			window.open('chat.html?username='+escape(username));
+		}
+	}
+	function doEnter(event){
+		if (event.code==='Enter') {
+			enter();
+		}
+	}
+</script>
+<!--  -->
+<style>
+	*{
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		background-color: #eee;
+	}
+	.container{
+		margin: 100px auto;
+		background-color: #fff;
+		border-radius: 6px;
+		border:1px solid #ccc;
+		width: 530px;
+		height: 350px;
+	}
+	.title{
+		text-align: center;
+		line-height: 250px;
+		font-size: 42px;
+		font-family: sans-serif;
+	}
+	.user{
+		text-align: center;
+		font-size: 16px;
+		margin-top: -50px;
+		height: 38px;
+	}
+	.user input{
+		outline: none;
+		height: 100%;
+		padding: 0 8px;
+	}
+	.user button{
+		height: 100%;
+		margin-left: 3px;
+		padding: 0 12px;
+	}
+</style>
+<!--  -->
+<div class="container">
+	<div class="title">
+		Chatroom
+	</div>
+	<div class="user">
+		<input id="name" type="text" placeholder="Your name..." onkeypress="doEnter(event)">
+		<button onclick="enter()">Enter</button>
+	</div>
+</div>
+</body>
+</html>

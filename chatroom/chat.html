@@ -31,11 +31,11 @@
 <script type="text/javascript">
 	function send(){
 		let message = $('#message').val();
-		let nickname = location.search.substr(1).split('&')
+		let nickname = unescape(location.search.substr(1).split('&')
 		.map(kv=>({key:kv.split('=')[0],value:kv.split('=')[1]}))
 		.filter(kv => kv.key==='username')
 		.map(kv => kv.value)
-		.join('');
+		.join(''));
 		if (message!=='') {
 			let date = new Date();
 			let toTwoDigitsNumber = (number) => +number<10?'0'+number:number;
