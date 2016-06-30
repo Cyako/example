@@ -17,7 +17,8 @@ import (
 	// system library
 	"fmt"
 	// "golang.org/x/net/websocket"
-	// "net/http"
+	"net/http"
+	"os"
 )
 
 func main() {
@@ -32,8 +33,13 @@ func main() {
 	fmt.Println(" Running...")
 	fmt.Println()
 
-	err := c.Run(":3000", "/")
-	if err != nil {
-		panic("ListenAndServe: " + err.Error())
-	}
+	port := os.Getenv("PORT")
+	c.Handle("/api/")
+	http.Handle("/", http.FileServer(http.Dir("")))
+	http.ListenAndServe(":"+port, nil)
+	// http.ListenAndServe(":"+port, http.FileServer(http.Dir("")))
+	// err := c.Run(":"+port, "/api/")
+	// if err != nil {
+	// 	panic("ListenAndServe: " + err.Error())
+	// }
 }

@@ -4,11 +4,13 @@
 	<title></title>
 </head>
 <body>
-<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="../../Cyako.js/dist/bundle.js"></script>
+<script type="text/javascript" src="../static/jquery.js"></script>
+<script type="text/javascript" src="../static/cyako.js"></script>
 <!-- cyako's litener on chatroom messages stream -->
 <script type="text/javascript">
-	var c = new Cyako("ws://localhost:3000");
+	// var c = new Cyako("ws://localhost:3000");
+	var SERVER_URI = `ws://${location.host}/api/`;
+	var c = new Cyako(SERVER_URI);	
 	var l = c.listen("RealtimeExample.JoinChatRoom",{},{});
 	l.then(ack=>{
 		console.log("Welcome!");
