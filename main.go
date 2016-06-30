@@ -35,7 +35,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	c.Handle("/api/")
-	http.Handle("/", http.FileServer(http.Dir("")))
+	http.Handle("/", http.FileServer(http.Dir("public")))
 	http.ListenAndServe(":"+port, nil)
 	// http.ListenAndServe(":"+port, http.FileServer(http.Dir("")))
 	// err := c.Run(":"+port, "/api/")
