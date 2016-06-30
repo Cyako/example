@@ -3,8 +3,7 @@ package module
 import (
 	cyako "github.com/Cyako/Cyako.go"
 	"github.com/Cyako/Cyako.go/kvstore"
-
-	"fmt"
+	// "fmt"
 )
 
 type kvsdep struct {
@@ -16,10 +15,10 @@ type KVStoreExample struct {
 }
 
 func (k KVStoreExample) Example(ctx *cyako.Ctx) {
-	kvstore := k.Dependences.KVStore
-	kvstore.SetWithScoped("KVStoreExample", "test", 123)
-	v := kvstore.GetWithScoped("KVStoreExample", "test")
-	fmt.Println(v)
+	// kvstore := k.Dependences.KVStore
+	// kvstore.SetWithScoped("KVStoreExample", "test", 123)
+	// v := kvstore.GetWithScoped("KVStoreExample", "test")
+	// fmt.Println(v)
 }
 
 func init() {
