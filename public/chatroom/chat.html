@@ -9,7 +9,8 @@
 <!-- cyako's litener on chatroom messages stream -->
 <script type="text/javascript">
 	// var c = new Cyako("ws://localhost:3000");
-	var SERVER_URI = `ws://${location.host}/api/`;
+	var protocol = location.protocol==='http:'?'ws:':'wss:';
+	var SERVER_URI = `${protocol}//${location.host}/api/`;
 	var c = new Cyako(SERVER_URI);	
 	var l = c.listen("RealtimeExample.JoinChatRoom",{},{});
 	l.then(ack=>{
