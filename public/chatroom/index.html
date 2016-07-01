@@ -9,7 +9,7 @@
 	function enter(){
 		let username = $('#name').val();
 		if (username!=='') {
-			window.open('chat.html?username='+escape(username));
+			location.replace('chat.html?username='+escape(username));
 		}
 	}
 	function doEnter(event){
