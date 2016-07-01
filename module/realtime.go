@@ -24,14 +24,12 @@ func (r RealtimeExample) JoinChatRoom(ctx *cyako.Ctx) {
 func (r RealtimeExample) SendChatMessage(ctx *cyako.Ctx) {
 	realtime := r.Dependences.Realtime
 	ctx.Set(&cyako.ParamConfig{Key: "message", Required: true})
-	fmt.Println(ctx.Params)
 	res := &cyako.Res{}
 	res.Init()
-	// message := ctx.Params["message"].(string)
-	// fmt.Println(message)
 	res.Params["message"] = ctx.Params["message"]
-	// fmt.Println(res.Params)
+	fmt.Println("Send:", res.Params)
 	realtime.Send("chatroom", res)
+	fmt.Println("Send finish.")
 }
 
 func init() {
