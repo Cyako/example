@@ -28,6 +28,7 @@ func (r RealtimeExample) SendChatMessage(ctx *cyako.Ctx) {
 	res.Init()
 	res.Params["message"] = ctx.Params["message"]
 	fmt.Println("Send:", res.Params)
+	fmt.Println(realtime)
 	realtime.Send("chatroom", res)
 	fmt.Println("Send finish.")
 }
