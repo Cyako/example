@@ -1,0 +1,31 @@
+{
+	"ImportPath": "github.com/Cyako/example",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/Centimitr/namespace",
+			"Rev": "a07029951ca43dc59faf2694d91a1e2dd90857f4"
+		},
+		{
+			"ImportPath": "github.com/Cyako/Cyako.go",
+			"Rev": "28bc07192c34839268442759df1df95420d51aa7"
+		},
+		{
+			"ImportPath": "github.com/Cyako/Cyako.go/kvstore",
+			"Rev": "28bc07192c34839268442759df1df95420d51aa7"
+		},
+		{
+			"ImportPath": "github.com/Cyako/Cyako.go/realtime",
+			"Rev": "28bc07192c34839268442759df1df95420d51aa7"
+		},
+		{
+			"ImportPath": "github.com/Cyako/Cyako.go/specvalue",
+			"Rev": "28bc07192c34839268442759df1df95420d51aa7"
+		},
+		{
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "38d370f60c50163d0a1ade69a8825fc96b687662"
+		}
+	]
+}

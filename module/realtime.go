@@ -3,8 +3,6 @@ package module
 import (
 	cyako "github.com/Cyako/Cyako.go"
 	"github.com/Cyako/Cyako.go/realtime"
-
-	"fmt"
 )
 
 type rtdev struct {
@@ -27,10 +25,7 @@ func (r RealtimeExample) SendChatMessage(ctx *cyako.Ctx) {
 	res := &cyako.Res{}
 	res.Init()
 	res.Params["message"] = ctx.Params["message"]
-	fmt.Println("Send:", res.Params)
-	fmt.Println(realtime)
 	realtime.Send("chatroom", res)
-	fmt.Println("Send finish.")
 }
 
 func init() {
