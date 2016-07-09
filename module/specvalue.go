@@ -14,32 +14,32 @@
 
 package module
 
-import (
-	cyako "github.com/Cyako/Cyako.go"
-	"github.com/Cyako/Cyako.go/specvalue"
+// import (
+// 	cyako "github.com/Cyako/Cyako.go"
+// 	"github.com/Cyako/Cyako.go/specvalue"
 
-	// "fmt"
-)
+// 	// "fmt"
+// )
 
-type svdep struct {
-	SpecValue *specvalue.SpecValue
-}
+// type svdep struct {
+// 	SpecValue *specvalue.SpecValue
+// }
 
-type SpecValueExample struct {
-	Dependences svdep
-}
+// type SpecValueExample struct {
+// 	Dependences svdep
+// }
 
-func (s SpecValueExample) Example(ctx *cyako.Ctx) {
-	// specvalue := s.Dependences.SpecValue
-	// specvalue.SetInt("1")
-	// r := specvalue.GetInt("1")
-}
+// func (s SpecValueExample) Example(ctx *cyako.Ctx) {
+// 	// specvalue := s.Dependences.SpecValue
+// 	// specvalue.SetInt("1")
+// 	// r := specvalue.GetInt("1")
+// }
 
-func init() {
-	var m = SpecValueExample{
-		Dependences: svdep{
-			SpecValue: cyako.Svc["SpecValue"].(*specvalue.SpecValue),
-		},
-	}
-	cyako.LoadModule(m)
-}
+// func init() {
+// 	var m = SpecValueExample{
+// 		Dependences: svdep{
+// 			SpecValue: cyako.Svc["SpecValue"].(*specvalue.SpecValue),
+// 		},
+// 	}
+// 	cyako.LoadModule(m)
+// }

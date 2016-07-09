@@ -9,7 +9,8 @@
 	function enter(){
 		let username = $('#name').val();
 		if (username!=='') {
-			location.replace('chat.html?username='+escape(username));
+			let url = 'chat.html?username='+escape(username);
+			window.location.href = url;
 		}
 	}
 	function doEnter(event){
@@ -65,7 +66,7 @@
 		Chatroom
 	</div>
 	<div class="user">
-		<input id="name" type="text" placeholder="Your name..." onkeypress="doEnter(event)">
+		<input id="name" type="text" placeholder="Your name..." autofocus onkeypress="doEnter(event)">
 		<button onclick="enter()">Enter</button>
 	</div>
 </div>

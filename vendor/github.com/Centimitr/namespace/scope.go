@@ -14,6 +14,10 @@
 
 package namespace
 
+import (
+// "errors"
+)
+
 type Scope struct {
 	// scope's name
 	name string
@@ -24,14 +28,4 @@ type Scope struct {
 // generate key string with namespace\scope and string
 func (s *Scope) Key(name string) string {
 	return s.namespace.keyConcatRule(s.name, name)
-}
-
-func (s *Scope) Handler(name string) *Handler {
-	if s.namespace.binding == nil {
-		panic("Namespace hasn't have a binding yet.")
-	}
-	return &Handler{
-		key:       name,
-		Interface: s.namespace.binding,
-	}
 }

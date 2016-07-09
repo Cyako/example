@@ -15,7 +15,6 @@
 package cyako
 
 import (
-	// "fmt"
 	"errors"
 	"reflect"
 	"strings"
@@ -24,6 +23,10 @@ import (
 /*
 	Processor & Processor Module
 */
+type Module struct {
+	// plan to cut methods' ctx params
+	ctx *Ctx
+}
 
 type Processor struct {
 	Module  string
@@ -58,7 +61,7 @@ func (c *Cyako) loadModule(x interface{}) {
 	t := v.Type()
 	for i := 0; i < v.NumMethod(); i++ {
 		index := i
-		c.ProcessorMap[t.Name()+"."+t.Method(i).Name] = &Processor{
+		p := &Processor{
 			PkgPath: t.PkgPath(),
 			Module:  t.Name(),
 			Name:    t.Method(i).Name,
@@ -66,5 +69,8 @@ func (c *Cyako) loadModule(x interface{}) {
 				return t.Method(index).Func.Call([]reflect.Value{v, reflect.ValueOf(ctx)})
 			},
 		}
+		moduleName := t.Name()
+		methodName := t.Method(i).Name
+		c.ProcessorMap[moduleName+"."+methodName] = p
 	}
 }

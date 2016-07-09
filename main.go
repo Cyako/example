@@ -37,9 +37,4 @@ func main() {
 	c.Handle("/api/")
 	http.Handle("/", http.FileServer(http.Dir("public")))
 	http.ListenAndServe(":"+port, nil)
-	// http.ListenAndServe(":"+port, http.FileServer(http.Dir("")))
-	// err := c.Run(":"+port, "/api/")
-	// if err != nil {
-	// 	panic("ListenAndServe: " + err.Error())
-	// }
 }
